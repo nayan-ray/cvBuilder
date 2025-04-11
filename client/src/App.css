@@ -1,0 +1,14 @@
+.left-app{
+    flex-basis: 25%;
+    background: rebeccapurple;
+}
+.middle-app{
+    flex-basis: 45%;
+}
+.right-app{
+    flex-basis: 30%;
+    background-color: yellow
+    
+    
+    ;
+}
