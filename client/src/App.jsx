@@ -4,6 +4,7 @@ import Pdf from "./components/pdf/Pdf";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 import Navbar from "./components/navbar/Navbar";
+import Home from "./pages/home/Home";
 
 function App() {
   return (
@@ -23,14 +24,7 @@ function App() {
     //       </PDFDownloadLink>
     //   </div>
     // </div>
-    <div className="">
-        <Navbar />
-       <div className="d-flex align-items-center">
-           <div className="left-app">left</div>
-           <div className="middle-app">middle</div>
-           <div className="right-app">right</div>
-       </div>
-    </div>
+    <Home />
 
   );
 }

@@ -1,0 +1,10 @@
+.c-right{
+    display: none;
+    
+}
+
+@media(max-width : 1023px){
+    .c-right{
+        display: block;
+    }
+}

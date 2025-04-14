@@ -1,0 +1,14 @@
+.left{
+   height: 5000px;
+   position: relative;
+}
+
+.left-handler{
+   width: 2px;
+   background: #f1f1f1;
+   height: 100%;
+   position: absolute;
+   top: 0;
+   right: 0;
+   cursor: col-resize;
+}

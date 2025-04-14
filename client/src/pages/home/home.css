@@ -1,0 +1,55 @@
+.left-app{
+    
+    background: gold;
+    position: fixed;
+    top: 54px;
+    left: 0;
+    width: 25%;
+    height: calc(100vh - 54px);
+    overflow-y: auto;
+    z-index: 2;
+}
+
+::-webkit-scrollbar{
+    width: 7px;
+}
+::-webkit-scrollbar-track{
+    background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb{
+    background-color: #555;
+    border-radius: 5px;
+}
+.middle-app{
+    
+    background: rebeccapurple;
+    position: fixed;
+    top: 54px;
+    left: 25%;
+    width: 45%;
+    height: calc(100vh - 54px);
+}
+.right-app{
+    background: lightblue;
+    position: fixed;
+    top: 54px;
+    left: 70%;
+    width: 30%;
+    height: calc(100vh - 54px);
+}
+
+
+
+@media(max-width : 1023px){
+    .left-app{
+        display: none;
+        
+    }
+    .middle-app{
+       left: 0;
+       width: 100%;
+    }
+    .right-app{
+        display: none;
+    }
+}

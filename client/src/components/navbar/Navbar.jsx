@@ -5,17 +5,18 @@ import CRight from "./navChild/centerRight/CRight";
 
 const Navbar = () => {
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+    <nav className="navbar nav-sec navbar-expand-lg navbar-light bg-secondary">
       <div className="container-fluid">
         <div className=" w-100 d-flex align-items-center justify-content-between">
-          <span className="fs-5">CV BUILDER</span>
-          <div className=" fs-5 d-flex align-items-center">
+          <span className="fs-5 text-nowrap">CV BUILDER</span>
+          <div className=" fs-5 d-flex align-items-center gap-3">
             <div className="center-left">
                   <CLeft />
+
             </div>
-            <span>Welcome to CV Builder</span>
+            
             <div className="center-right">
-                 {/* <CRight /> */}
+                 <CRight />
 
             </div>
           </div>
