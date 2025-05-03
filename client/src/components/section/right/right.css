@@ -1,0 +1,15 @@
+.Right{
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+.right-resizer{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 5px;
+    cursor: ew-resize;
+    z-index: 1;
+    background-color: tomato;
+}
