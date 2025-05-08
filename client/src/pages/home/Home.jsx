@@ -5,8 +5,10 @@ import Left from "../../components/section/left/Left";
 import { Right } from "../../components/section/right/Right";
 
 const Home = () => {
-  const [leftWidth, setLeftWidth] = useState(330); // Default initial width
-  const [rightWidth, setRightWidth] = useState(330); // Default initial width
+  const [leftWidth, setLeftWidth] = useState(25); // Default initial width
+  const [rightWidth, setRightWidth] = useState(30); // Default initial width
+ // Ref to store the width of the left-app div
+
   const leftAppRef = useRef(null); // Ref for the left-app div
   const rightAppRef = useRef(null); // Ref for the right-app div
   const dragging = useRef({click : false, resizer: ""}); // Ref to track dragging state
@@ -14,42 +16,59 @@ const Home = () => {
 
   const handleMouseDownLeft = useCallback((e) => {
     e.preventDefault(); // Prevent text selection
-    console.log("left");
+   
     
     
     previousClientX.current = e.clientX;
     dragging.current = {click : true, resizer: "left"};
+    // Get the current width of the left-app div
   }, []);
   
   const handleMouseDownRight = useCallback((e) => {
     e.preventDefault(); // Prevent text selection
     previousClientX.current = e.clientX;
     dragging.current = {click : true, resizer: "right"};
-    console.log("right");
-    console.log(rightAppRef.current.getBoundingClientRect().left);
+    
     
   }, []);
   const handleMouseMove = useCallback((e) => {
     if (!dragging.current.click) return;
-    const deltaX = e.clientX - previousClientX.current;
+   
+    //persentage deltaX 
+     const deltaX = ((e.clientX - previousClientX.current) / window.innerWidth) * 100;
+    
+     
     previousClientX.current = e.clientX;
     if(dragging.current.resizer === "left"){
-      const oldWidth = leftAppRef.current.offsetWidth; // Get the current width of the left-app div
-      const newWidth = oldWidth + deltaX;
-      if(leftWidth < newWidth && newWidth < leftWidth + 300) {
-        leftAppRef.current.style.width = `${newWidth}px`; // Set the new width
-      }
+     
+      
+      setLeftWidth((preWidth)=>{
+        const newWidth = preWidth + deltaX;
+        if(25 < newWidth && newWidth < 40) {    
+          return newWidth;
+        }
+        return preWidth; // Return the previous width if the condition is not met
+      })
+      
     }
      
     if(dragging.current.resizer === "right"){
-      const oldWidth = rightAppRef.current.offsetWidth; // Get the current width of the right-app div
-     // get the left position of the right-app div
-      const rightPosition = rightAppRef.current.getBoundingClientRect().left; // Get the left position of the left-app div
-      const newWidth = oldWidth - deltaX;
-      if(rightWidth < newWidth && newWidth < rightWidth + 300) {
-        rightAppRef.current.style.width = `${newWidth}px`; // Set the new width
-        rightAppRef.current.style.left = `${rightPosition + deltaX}px`; // Set the new left position
-      }
+    //   const oldWidth = rightAppRef.current.offsetWidth; // Get the current width of the right-app div
+    //  // get the left position of the right-app div
+    //   const rightPosition = rightAppRef.current.getBoundingClientRect().left; // Get the left position of the left-app div
+    //   const newWidth = oldWidth - deltaX;
+    //   if(rightWidth < newWidth && newWidth < rightWidth + 300) {
+    //     rightAppRef.current.style.width = `${newWidth}px`; // Set the new width
+    //     rightAppRef.current.style.left = `${rightPosition + deltaX}px`; // Set the new left position
+    //   }
+    //   previousClientX.current = e.clientX; // Update the previous clientX position
+      setRightWidth((preWidth)=>{
+        const newWidth = preWidth - deltaX;
+        if(30 < newWidth && newWidth < 40) {    
+          return newWidth;
+        }
+        return preWidth; // Return the previous width if the condition is not met
+      })
     }
 
   }, []);
@@ -58,17 +77,7 @@ const Home = () => {
     dragging.current = {click : false, resizer: ""}; // Reset dragging state
   }, []);
 
-  useEffect(() => {
-    // Use setTimeout to ensure the DOM is fully rendered before accessing the width
-     if (leftAppRef.current) {
-      const initialWidth = leftAppRef.current.offsetWidth; // Get the initial width of the left-app div
-      setLeftWidth(initialWidth); // Set the initial width state
-     }
-    if (rightAppRef.current) {
-      const initialWidth = rightAppRef.current.offsetWidth; // Get the initial width of the right-app div
-      setRightWidth(initialWidth); // Set the initial width state
-     }
-  }, []);
+ 
  
   
   useEffect(() => {
@@ -88,7 +97,7 @@ const Home = () => {
           id="left-appID"
           className="left-app"
           ref={leftAppRef} // Attach the ref to the left-app div
-          
+          style={{ width: `${ leftWidth }%` }} // Set the initial width
         >
           <Left mouseHandler={handleMouseDownLeft} />
         </div>
@@ -96,6 +105,7 @@ const Home = () => {
         <div 
         ref={rightAppRef} // Attach the ref to the right-app div
         className="right-app"
+        style={{ width: `${ rightWidth }%` }} // Set the initial width
         >
           
           <Right mouseHandler = {handleMouseDownRight}/>

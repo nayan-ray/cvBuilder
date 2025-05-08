@@ -5,6 +5,7 @@
     top: 54px;
     left: 0;
     width: 25%;
+
     height: calc(100vh - 54px);
     overflow-y: auto;
     z-index: 2;
@@ -32,8 +33,9 @@
 .right-app{
     background: lightblue;
     position: fixed;
+    right: 0;
     top: 54px;
-    left: 70%;
+    
     width: 30%;
     height: calc(100vh - 54px);
 }
