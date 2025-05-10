@@ -29,13 +29,28 @@
     left: 25%;
     width: 45%;
     height: calc(100vh - 54px);
+    z-index: -999;
+    
+}
+.middle-wrapper{
+    width: 100%;
+    height: 100%; 
+    background: green;
+}
+.middle-container{
+   
+}
+.mid-child-container{
+   width: 300px;
+   height: 400px;
+   background: lightgrey;
 }
 .right-app{
     background: lightblue;
     position: fixed;
     right: 0;
     top: 54px;
-    
+
     width: 30%;
     height: calc(100vh - 54px);
 }
